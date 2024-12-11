@@ -5,8 +5,7 @@
   "type": "module",
   "homepage": "https://tmraaex.github.io/e-commerce-reactVersion/",
   "scripts": {
-    "predeploy": "vite build",
-    "deploy": "vite-gh-pages",
+    "deploy": "vite build && vite-gh-pages",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",

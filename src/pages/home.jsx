@@ -5,7 +5,7 @@ export default function Home() {
 
     // Function to fetch data from OMDb
     async function searchOMDb(searchValue) {
-        const apiKey = import.meta.env.VITE_OMDB_API_KEY
+        const apiKey = "7db2dcc4"
         const url = `https://www.omdbapi.com/?s=${encodeURIComponent(searchValue)}&apikey=${apiKey}`;
 
         try {
