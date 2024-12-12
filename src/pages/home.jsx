@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react';
+import {useLocation} from 'react-router-dom';
+import log from "eslint-plugin-react/lib/util/log.js";
 
 export default function Home() {
     const [results, setResults] = useState([]);
+    const location = useLocation();
+
 
     // Function to fetch data from OMDb
     async function searchOMDb(searchValue) {
@@ -11,14 +15,15 @@ export default function Home() {
         try {
             const response = await fetch(url);
             if (!response.ok) {
-                throw new Error('Error fetching data');
+                console.error('Error fetching data');
+
             }
             const data = await response.json();
 
             if (data.Response === 'True') {
                 return data.Search.slice(0, 5);
             } else {
-                throw new Error(data.Error);
+                console.error(data.Error);
             }
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -30,12 +35,18 @@ export default function Home() {
     useEffect(() => {
         const fetchResults = async () => {
             const searchValue = 'spider-man'; // Example search term
-            const searchResults = await searchOMDb(searchValue);
-            setResults(searchResults); // Update state with results
+            return await searchOMDb(searchValue);
         };
 
-        fetchResults();
+        fetchResults().then(searchResults => {
+            setResults(searchResults); // Update state with results
+        });
     }, []);
+    useEffect(() => {
+        console.log("location changed")
+        console.log(location);
+    }, [location]);
+
 
     return (
         <>

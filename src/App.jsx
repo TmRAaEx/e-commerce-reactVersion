@@ -11,7 +11,9 @@ function App() {
             <HeaderComp/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
+                <Route path="/e-commerce-reactVersion" element={<Home/>}/>
                 <Route path="/product" element={<ProductPage/>}/>
+                <Route path="/e-commerce-reactVersion/product" element={<ProductPage/>}/>
             </Routes>
             <FooterComp/>
         </BrowserRouter>
